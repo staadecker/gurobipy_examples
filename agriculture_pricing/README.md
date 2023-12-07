@@ -1,6 +1,6 @@
 # Agriculture Pricing Example
 
-Example of implementation of agriculture pricing adapted from [here](https://github.com/Gurobi/modeling-examples/tree/master/agricultural_pricing).
+Example of implementation of agriculture pricing adapted from [here](https://github.com/Gurobi/modeling-examples/tree/master/agricultural_pricing) (original source: Example 21 in the fifth edition of Model Building in Mathematical Programming, by H. Paul Williams on pages 276-278 and 333-335).
 
 ## Data View
 
