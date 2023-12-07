@@ -71,9 +71,6 @@ $$0 \le \text{qtyper}_{c,d}\le 1 \quad \forall c\in C, d\in D$$
 
 > Source: From column `composition` in `composition.csv`
 
-> [!WARNING]
-> How do we specify which column is which in `composition.csv`
-
 > Description: Percentage of component $c$ in dairy product $d$.
 
 #### Last Year's Demand (Param), $\text{consumption}_d$
@@ -99,9 +96,6 @@ $$\text{elasticity}_{d1, d2} \quad \forall d1 \in D, d2 \in D$$
 > Default: `0`
 
 > Source: From column `elasticity` in `elasticity.csv`
-
-> [!WARNING]
-> How do we indicate the double index? Do we need to?  
 
 > Description: Last year price cross-elasticity of domestic consumption of $d1$ and $d2$. When $d1=d2$, it is simply the (self-)elasticity.
 
