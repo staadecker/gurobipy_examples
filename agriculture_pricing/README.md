@@ -109,40 +109,30 @@ $$\text{elasticity}_{d1, d2} \quad \forall d1 \in D, d2 \in D$$
 
 #### Product Price (var), $\text{p}_d$
 
-$$0 < \text{p}_d \quad \forall d \in D$$
+$$0 \le \text{p}_d \quad \forall d \in D$$
 
 > Description: Price of dairy product $d$ (dollars/1000 tons).
 
 #### Product Quantity (Var)
 
-$$ 0 < \text{q}_d \quad \forall d \in D$$
+$$ 0 \le \text{q}_d \quad \forall d \in D$$
 
 > Description: Demand of dairy product $d$ (1000 tons).
 
 #### Capacity Limit (Const)
 
-$$
-\sum_{d \in \text{D}}{\text{qtyper}_{c,d}*\text{q}_{d} } \leq \text{capacity}_{c} \quad \forall c \in \text{C}
-$$
+$$\sum_{d \in \text{D}}{\text{qtyper}_{c,d}*\text{q}_{d} } \leq \text{capacity}_{c} \quad \forall c \in \text{C}$$
 
 > Description: The limited availabilities of fat and dry matter are enforced by the constraint.
 
 #### Prevent Last Year Price Increase (Const)
 
-$$
-\sum_{d \in \text{Dairy}}{\text{consumption}_{d}*\text{p}_{d} } \leq \text{prcIndex}
-$$
+$$\sum_{d \in \text{Dairy}}{\text{consumption}_{d}*\text{p}_{d} } \leq \text{prcIndex}$$
 
 > Description: This constraint establishes that the new prices must be such that the total cost of last year’s consumption would not be increased.
 
 #### Define Elasticities (Const)
 
-$$
-\frac{\text{q}_{d} - \text{consumption}_{d}}{\text{consumption}_{d}}
- =
--\text{elasticity}_{d,d}\frac{\text{p}_{d} - \text{price}_{d}}{\text{price}_{d}} + \sum_{d2 \in D;d2 \ne d}{} \text{elasticity}_{d2, d}\frac{\text{p}_{d2} - \text{price}_{d2}}{\text{price}_{d2}}
-
-\quad \forall d \in D
-$$
+$$ \frac{\text{q}_{d} - \text{consumption}_{d}}{\text{consumption}_{d}} = -\text{elasticity}_{d,d}\frac{\text{p}_{d} - \text{price}_{d}}{\text{price}_{d}} + \sum_{d2 \in D;d2 \ne d}{} \text{elasticity}_{d2, d}\frac{\text{p}_{d2} - \text{price}_{d2}}{\text{price}_{d2}} \quad \forall d \in D $$
 
 > Description: The demand variables $q_{d}$ are related to the price variables $p_{d}$  through the price elasticities relationships. We approximate the elasticities with linear relationships.
