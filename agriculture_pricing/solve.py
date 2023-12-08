@@ -31,7 +31,7 @@ def main():
     # Create params
     composition = df_composition["composition"].to_dict()
     capacity = df_capacity["capacity"].to_dict()
-    elasticity = df_elasticity["elasticity"].to_dict(into=defaultdict(int))
+    cross_elasticity = df_elasticity["elasticity"].to_dict(into=defaultdict(int))
     last_year_demand = df_market["demand"].to_dict()
     last_year_price = df_market["price"].to_dict()
 
@@ -43,7 +43,8 @@ def main():
     Demand = m.addVars(DAIRIES, name="Demand")
 
     # Create constraints
-    # Capacity constraint
+
+    # Capacity Limit
     for c in COMPONENTS:
         m.addLConstr(
             gp.LinExpr([(composition[d, c] / 100, Demand[d]) for d in DAIRIES]),
@@ -52,7 +53,7 @@ def main():
             name=f"con_capacity_{c}",
         )
 
-    # Price index constraint
+    # Prevent Last Year Price Increase
     m.addLConstr(
         gp.LinExpr([(last_year_demand[d], Price[d]) for d in DAIRIES]),
         gp.GRB.LESS_EQUAL,
@@ -60,20 +61,20 @@ def main():
         name="con_price_index",
     )
 
-    # Elasticities
+    # Constrain quantity via elasticities
     for d in DAIRIES:
         m.addLConstr(
             gp.LinExpr([(1 / last_year_demand[d], Demand[d])]),
             gp.GRB.EQUAL,
             gp.LinExpr(
-                [(-elasticity[d, d] / last_year_price[d], Price[d])]
+                [(-cross_elasticity[d, d] / last_year_price[d], Price[d])]
                 + [
-                    (elasticity[d, d2] / last_year_price[d2], Price[d2])
+                    (cross_elasticity[d, d2] / last_year_price[d2], Price[d2])
                     for d2 in DAIRIES
                     if d != d2
                 ]
             )
-            + (elasticity[d, d] - sum(elasticity[d, d2] for d2 in DAIRIES if d != d2) + 1),
+            + (cross_elasticity[d, d] - sum(cross_elasticity[d, d2] for d2 in DAIRIES if d != d2) + 1),
             name=f"con_elasticity_{d}",
         )
 
