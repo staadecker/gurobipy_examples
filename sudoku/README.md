@@ -78,5 +78,5 @@ $$\sum_{i\in S} \sum_{j\in S} \text{On}_{s \times r+i,s \times c+j,v} = 1 \quad 
 
 #### Enforce predefined values (Constraint)
 
-$$ \text{On}_{r - 1,\, c - 1,\, \text{p}_{r,c} -1 } = 1 \quad \forall (r,c) \in P $$
+$$ \text{On}_ {r - 1,\, c - 1,\, \text{p}_{r,c} -1 } = 1 \quad \forall (r,c) \in P $$
 
