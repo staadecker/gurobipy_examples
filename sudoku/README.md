@@ -4,6 +4,8 @@ This example is based on [Gurobi's Sudoku Example](https://www.gurobi.com/docume
 
 ## Data View
 
+Columns marked with * are index columns
+
 #### `constants.csv`
 
 | `grid_size` |
